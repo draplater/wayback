@@ -1,0 +1,192 @@
+/* base from Arce */
+body, p, dl, dd, blockquote, h1, h2, h3, h4, h5, h6, pre, ul, ol, li, 
+legend, fieldset, textarea, 
+img, form {
+	margin:0;
+	padding:0;
+}
+img, iframe {
+	border:none;
+}
+body {
+	font: 12px '����';
+	margin:4px 0pt 0pt;
+}
+
+/*����popup���������ʽ*/
+.popupCt {margin-top:20px;margin-left:15px;width:100%;font-size:12px}
+.popupCt *{font-size:12px}
+/*ͼƬ�����֮���������ʽ*/
+.line {margin-top:10px;line-height:16px;border-top:1px dashed #B2B2B2}
+/*����ϴ�ͼƬ����ʾ��ʽ*/
+.tip{border:1px solid #E2E2E2;background:#F4F4F4;padding:2px 4px;width:100px;color:#8E8E8E;font-size:12px;margin-bottom:40px}
+.tip a,.tip a:visited{color:#8E8E8E}
+/*��ҳ����ʽ*/
+.pg{margin-top:15px;font-size:14px;font-family:Arial;word-spacing:4px;text-align:center;white-space:nowrap}
+/*ͼƬ�����������ı༭ɾ�������Լ����Ƶ���ʽ*/
+div.aedit{margin:8px 0 10px 0;}
+div.aedit a{font-size:12px;color:#8E8E8E}
+div.aname{margin:6px 0 7px 0;}
+
+/*ͼƬ�������ҳ ���Ϸ��� �ϴ������������ӵ���ʽ*/
+a.blklink:link{color:#000}
+a.blklink:visited{color:#000}
+
+
+/*ͼƬ �ѻָ�ͼƬ���� ���Ϸ��� ����б�������*/
+.nav{color:#8E8E8E;padding-bottom:4px;border-bottom:1px dashed #A7A7A7;font-size:12px}
+.nav a,.nav a:visited{color:#8E8E8E}
+.nav .t{color:#000;font-size:14px;font-weight:bold}
+/*�����������ʽ*/
+.ptit{font-size:12px;color:#8E8E8E;background:#F1F1F1;padding-left:10px;line-height:21px;margin:5px 0}
+
+/*FRS�Ҳ�*/
+/*ģ�����div��ʽ*/
+.mod {float:right;border:1px solid #B6B6B6;margin-bottom:8px;background:url(/static/modX.gif) repeat-x left bottom;width:215px;}
+/*ģ��titleͷ����ʽ*/
+.mod .tl{background:url(/static/modX.gif) repeat-x 0px -160px;height:24px;line-height:24px; font-size:14px; font-weight:bold;padding-left:8px;padding-top:2px}
+/*ģ��title�еı������֣����������ӣ���ʽ*/
+.mod .modTitle{font-size: 14px;font-weight:bold;line-height:24px;}
+/*ģ��������ʾ���ֵ���ʽ*/
+.mod .cnt{padding:5px 8px;word-break:break-all;zoom:1;}
+.tl .edit {float: right;margin-right: 5px;font-weight: normal;font-size: 12px;}
+/*ul��list-style-type��Ϊnone����ʽ*/
+.cnt .ls{padding-left:15px; margin:0;color:#666}
+/*ul��list-style-typeΪnone����ʽ*/
+.cnt .nls{padding:0; margin:0;color:#666;list-style-type:none;}
+#videoFrame {margin:10px 36px 5px 37px!important;margin:10px 36px 5px 35px;height:124px;border:1px solid #B6B6B6;}
+/*end FES�Ҳ�*/
+
+/* ����ΪFRSҳ�澫Ʒ��ģ���е�css���� */
+.cnt .nls2{width:100%;background:url(/static/modY.gif) repeat-y -34px 0px;list-style-type:none;float:left;padding:0;margin:0;}
+.cnt .nls2 .ld { width:87px;float:left;margin-left:5px;}
+.cnt .nls2 .ld a{font-size:12px;line-height:18px;font-family:����;}
+
+.popupCt td,.popupCt div,.popupCt span{font-size:12px}
+#tb3 .tr1 td {font-weight: bold;background-color: #eaeaea;border-top: 1px solid #CCCCCC;font-size:12px;}
+#tb3 .tr2 td {line-height:22px;padding-left:5px;border-top: 1px solid #CCCCCC;font-size:12px;}
+#tb3 .tr3 td {line-height:22px;padding-left:5px;font-size:12px;background-color: #fefed2}
+.l60 {margin-left:64px}
+
+
+/* ��ƵFRS���� */
+.vimg{position:relative;width:120px;height:90px;margin-bottom:8px}
+.vimg img.v{border:1px solid #ddd;width:120px;height:90px;display:block}
+.vimg a.play:link,.vimg a.play:visited,.vimg a.play:hover{position:absolute;background:url(/static/play.gif) no-repeat;bottom:3px;left:4px;width:14px;height:14px;display:block;text-decoration:none}
+.vimg a.play:hover{position:absolute;background:url(/static/playover.gif) no-repeat;bottom:3px;left:4px;width:14px;height:14px;display:block;text-decoration:none}
+
+/* ��긽��ĳ��Ƶʱ�����ֱ߿��Ч�� */
+.vlist .box,.vlist .boxover{width:180px;padding:5px}
+.vlist .boxover{background:#F1F1F1}
+.vlist .pb{background:url(/static/pb.gif) no-repeat 22px 0;}
+.vlist .pb img{width:120px;height:90px;border:0;padding:7px 3px 15px;margin:0 auto}
+/* ��Ƶ�ı༭��ɾ���� */
+.vlist .act{margin-top:5px;visibility:hidden}
+.vlist .act a:link,.vlist .act a:visited{color:#666}
+
+/* ���С�� ʹ�õ���css  */
+.p .tpl, .p .bl {height:6px;width:13px;}
+.p .tpr, .p .br {height:6px;width:7px;}
+.p .co {background:transparent url(/static/modIcon.gif) no-repeat;}
+.p .ve {background:transparent url(/static/modY.gif) repeat-y;}
+.p .le {background:transparent url(/static/modX.gif) repeat-x;}
+
+.p .tpl{background-position: -39px -94px;}
+.p .tr {background-position: -64px -94px;}
+.p .bl {background-position: -39px -120px;}
+.p .br {background-position: -64px -120px;}
+
+.p .tc {background-position: 0px -46px;}
+.p .bc {background-position: 0px -52px;}
+.p .lc {background-position: 0px 0px;}
+.p .rc {background-position: -19px 0px;}
+
+/* suggest ʹ�õ�css��ʽ */
+.sug{background:#fff;clear:both;position:absolute;z-index:9999999999999999;overflow:auto;border:1px solid #f7941c}
+.sugItem{clear:both;background:#fff;color:#000;padding:3px;font-size:12px;height:19px}
+.sugHv{clear:both;color:#fff;background:#f7941c;padding:3px;font-size:12px;height:19px}
+
+/* ��������ʽ */
+.btnchgo {font-size:14px;background:#FAFAFA;border:1px solid #A1A2FF;background-image:url(/static/arwpr.gif);background-repeat:no-repeat;background-position: 65px 6px!important;background-position:69px 6px;color:#00c;padding:1px 16px 1px 5px!important;padding:3px 17px 1px 10px;cursor:pointer;position:absolute;z-index:1;text-align:left;text-decoration:underline}
+.btnchgc {font-size:14px;background:#FAFAFA;border:1px solid #A1A2FF;background-image:url(/static/arwpl.gif);background-repeat:no-repeat;background-position: 72px 6px!important;background-position:78px 6px;color:#00c;padding:1px 27px 1px 5px!important;padding:3px 27px 1px 10px;cursor:pointer;position:absolute;z-index:1;border-right:0;text-align:left;text-decoration:underline}
+#DivTagLayer {
+	background:#FAFAFA;
+	border:1px solid #A1A2FF;
+	position:absolute;
+	left:565px;
+	top:210px;
+	width:230px;
+	height:215px;
+	border:1px solid #A1A2FF;
+	display:none;
+	margin-right:20px;
+	padding:10px
+}
+/* Hacks for IE6 */
+* html #DivTagLayer {
+	left:570px;
+	top:170px;
+}
+/* Hacks for IE7 */
+*+html #DivTagLayer {
+	left:565px;
+	top:170px;
+}
+#DivShminn {width:230px!important;width:230px;height:215px!important;height:215px;overflow-y:auto;overflow-x:hidden}
+#DivTagLayer h3 {font-size:12px;margin:0 0 3px}
+#DivTagLayer p {font-size:12px;margin:0;padding:0;line-height:180%;font-weight:200}
+#DivTagLayer a {font-size:12px;margin:0;padding:0;line-height:180%;color:#00c;text-decoration:none}
+#DivTagLayer a:hover {font-size:12px;margin:0;padding:0;line-height:180%;color:#fff;background:#00c}
+.tagMatch {color:#390!important;line-height:180%}
+.tagSld {color:#a0a0a0!important;line-height:180%}
+.tagNSld {}
+/* �ϴ���Ƶҳ����ʾ��Ƶ������ͼƬ��������ʽ */
+.picCapShow {display:inline-block;width:100px;border:1px solid #ccc;background:#fff;}
+
+/* =Layout
+----------------------------------------------------------------------------*/
+#main {
+	margin:25px 10px;
+}
+
+#operation {
+	margin: 0pt 5px; 
+	text-align:right;
+}
+#pageBar {
+	margin:0 auto;
+}
+
+/* ---------------- clearfix ------------------- */
+.clearfix:after {
+	content:"."; 
+	display:block; 
+	height:0; 
+	clear:both; 
+	visibility:hidden; 
+}
+
+.clearfix {
+	display:inline-block; 
+	display:block;
+}
+/*
+     FILE ARCHIVED ON 05:57:27 Sep 07, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:29:28 May 05, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 84.187
+  exclusion.robots: 0.101
+  exclusion.robots.policy: 0.092
+  RedisCDXSource: 1.276
+  esindex: 0.009
+  LoadShardBlock: 65.952 (3)
+  PetaboxLoader3.datanode: 71.118 (4)
+  load_resource: 81.648
+  PetaboxLoader3.resolve: 34.981
+*/

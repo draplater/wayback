@@ -1,0 +1,161 @@
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+function SWFObject(swf, id, w, h, ver, c){
+	this.params = new Object();
+	this.variables = new Object();
+	this.attributes = new Object();
+	this.setAttribute("id",id);
+	this.setAttribute("name",id);
+	this.setAttribute("width",w);
+	this.setAttribute("height",h);
+	this.setAttribute("version",ver);
+	this.setAttribute("swf",swf);	
+	this.setAttribute("classid","clsid:D27CDB6E-AE6D-11cf-96B8-444553540000");
+	this.addParam("bgcolor",c);
+}
+SWFObject.prototype.addParam = function(key,value){
+	this.params[key] = value;
+}
+SWFObject.prototype.getParam = function(key){
+	return this.params[key];
+}
+SWFObject.prototype.addVariable = function(key,value){
+	this.variables[key] = value;
+}
+SWFObject.prototype.getVariable = function(key){
+	return this.variables[key];
+}
+SWFObject.prototype.setAttribute = function(key,value){
+	this.attributes[key] = value;
+}
+SWFObject.prototype.getAttribute = function(key){
+	return this.attributes[key];
+}
+SWFObject.prototype.getVariablePairs = function(){
+	var variablePairs = new Array();
+	for(key in this.variables){
+		variablePairs.push(key +"="+ this.variables[key]);
+	}
+	return variablePairs;
+}
+SWFObject.prototype.getParams=function(){
+		return this.params;
+}
+SWFObject.prototype.getHTML = function(){
+	var con = '';
+	if (navigator.plugins && navigator.mimeTypes && navigator.mimeTypes.length) {
+		con += '<embed type="application/x-shockwave-flash"  pluginspage="https://web.archive.org/web/20090305183743/http://www.macromedia.com/go/getflashplayer" src="'+ this.getAttribute('swf') +'" width="'+ this.getAttribute('width') +'" height="'+ this.getAttribute('height') +'"';
+		con += ' id="'+ this.getAttribute('id') +'" name="'+ this.getAttribute('id') +'" ';
+		for(var key in this.params){ con += [key] +'="'+ this.params[key] +'" '; }
+		var pairs = this.getVariablePairs().join("&");
+		if (pairs.length > 0){ con += 'flashvars="'+ pairs +'"'; }
+		con += '/>';
+	}else{
+		con = '<object id="'+ this.getAttribute('id') +'" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="'+ this.getAttribute('width') +'" height="'+ this.getAttribute('height') +'">';
+			con += '<param name="movie" value="'+ this.getAttribute('swf') +'" />';
+			var params = this.getParams();
+			for(var key in params) {
+			 con += '<param name="'+ key +'" value="'+ params[key] +'" />';
+			}
+			var pairs = this.getVariablePairs().join("&");
+			if(pairs.length > 0) {con += '<param name="flashvars" value="'+ pairs +'" />';}
+			con += "</object>";
+	}
+	return con;
+}
+SWFObject.prototype.write = function(elementId){	
+	if(typeof elementId == 'undefined'){
+		document.write(this.getHTML());
+	}else{
+		var n = (typeof elementId == 'string') ? document.getElementById(elementId) : elementId;
+		n.innerHTML = this.getHTML();
+	}
+}
+function _playerConfig(id,sources){
+	  var so = new SWFObject("https://web.archive.org/web/20090305183743/http://mv.baidu.com/export/flashplayer.swf?v=200", id, sources.width||"480", sources.height||"410", 8, "#FFFFFF");
+                so.addParam("quality", "high");
+                so.addParam("swLiveConnect", "true");
+                so.addParam("menu", "false");
+                so.addParam("allowScriptAccess", "always");
+                so.addParam("allowFullScreen", "true");
+			var s=sources;
+			so.addVariable("__turn",s.turn||"true");
+			so.addVariable("vs",s.videoSource||escape("https://web.archive.org/web/20090305183743/http://mvideo.baidu.com/video/"));
+			so.addVariable("ads",s.adSource||escape("https://web.archive.org/web/20090305183743/http://mv.baidu.com/ad/"));
+			so.addVariable("cs",s.snapSource||escape("https://web.archive.org/web/20090305183743/http://mvimg.baidu.com/snap/"));
+			so.addVariable("idomain",s.idomain||escape("https://web.archive.org/web/20090305183743/http://mv.baidu.com/"));
+			so.addVariable("vdomain",s.idomain||escape("https://web.archive.org/web/20090305183743/http://mvideo.baidu.com/"));
+			if(s.onPlayStart){so.addVariable("onPlayStart",s.onPlayStart);}
+            if(s.onPlayPause){so.addVariable("onPlayPause",s.onPlayPause);}	
+			if(s.onPlayStop){so.addVariable("onPlayStop",s.onPlayStop);}
+		    if(s.onPlayEnd){so.addVariable("onPlayEnd",s.onPlayEnd);}
+		    if(s.onFileLoadedError){so.addVariable("onFileLoadedError",s.onFileLoadedError);}	
+			if(s.htmlConsole){so.addVariable("htmlConsole",s.htmlConsole);}
+			so.addVariable("adpos",s.adPostion||"none");
+		return so;		
+}
+function _playVideo(videoId,autoplay,others){
+		flashId=others.flashId||"flashplayer";
+		var so=_playerConfig(flashId,others);	
+		so.addVariable("autoplay",autoplay);
+		so.addVariable("vid",videoId);
+		if(others.pid){	so.addVariable("pid",others.pid)}
+		so.write(others.divId);	
+}
+function _playVideos(listURL,autoplay,others){
+                flashId=others.flashId||"flashplayer";
+                var so=_playerConfig(flashId,others);
+                so.addVariable("autoplay",autoplay);
+		so.addVariable("playlist",listURL);
+		if(others.pid){	so.addVariable("pid",others.pid)}
+        if(others.vid){so.addVariable("vid",others.vid);}
+		so.write(others.divId);
+}
+ 
+var BVP={
+	play:_playVideo,
+	playList:_playVideos,	
+	getFlash:function(id) {
+		if (navigator.appName.indexOf("Microsoft")!= -1)
+		{
+			return window[id];
+		}else{
+			return document[id];
+		}
+	}
+
+};
+
+
+
+}
+/*
+     FILE ARCHIVED ON 18:37:43 Mar 05, 2009 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 14:53:15 May 05, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 105.607
+  exclusion.robots: 0.069
+  exclusion.robots.policy: 0.059
+  cdx.remote: 0.056
+  esindex: 0.009
+  LoadShardBlock: 75.416 (3)
+  PetaboxLoader3.datanode: 82.479 (4)
+  load_resource: 54.476
+  PetaboxLoader3.resolve: 31.369
+*/

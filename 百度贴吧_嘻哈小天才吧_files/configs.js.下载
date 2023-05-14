@@ -1,0 +1,1094 @@
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+var Results = {
+	0:"设置成功！",
+	1:"修改保存成功！",
+	2:"图片移动完毕，删除相册成功！",
+	3:"删除整个相册成功！",
+	4:"请选择一个相册",
+	5:"相册创建成功！",
+	6:"本吧目前没有相册，请先创建",
+	7:"删除成功！",
+	8:"删除失败！",
+	9:"不能选择本身相册！",
+	3153920:"图片库名称不能为空",						//暂不使用
+	3153922:"仅限使用汉字、字母、数字和下划线",			//图片库名称
+	3153921:"名称长度不能超过8个汉字，请重试",			//图片库名称
+	3153923:"您输入的名称包含不适宜文字，请重试",		//图片库名称
+	3158274:"您输入的名称包含不适宜文字，请重试",		//FRS右侧模块的名称修改
+	3153925:"名称长度不能超过15个汉字，请重试",			//相册名称
+	3153929:"简介长度不能超过100个汉字，请重试",		//相册描述
+	3153924:"必须填写相册名称",							//相册名称
+	3153926:"仅限使用汉字、字母、数字和下划线",			//相册名称  含有特殊字符
+	3153933:"相册名称不得重复",
+	3153927:"您输入的内容包含不适宜文字，请重试",		//相册名称
+	3153931:"您输入的内容包含不适宜文字，请重试",		//相册描述
+	3153932:"该相册已被删除，请重新选择",				//相册不存在
+	3153934:"本吧相册数已达到上限，无法创建新相册！",	//相册数达到上线
+	3153937:"图片最大不得超过3M",						//图片上传
+	3153939:"您指定的图片不存在或图片格式不合适",		//图片上传
+	3153938:"您指定的图片不存在或图片格式不合适",		//图片上传
+	3153941:"描述长度不能超过100个汉字，请重试",		//图片上传
+	3153943:"您输入的内容包含不适宜文字，请重试",		//图片上传
+	3153935:"剩余可用空间不足",							//图片上传
+	3153944:"请检查网络",								//图片上传
+	3162114:"链接名称不能超过31个汉字，请重试",
+	3162116:"您输入的链接地址过长，请重试",
+	3162121:"您输入的名称包含不适宜文字，请重试",
+	3162122:"您输入的链接地址包含不适当信息，请重试",
+	3162117:"",
+	3162118:"",
+	3162113:"对不起，添加链接数已达上限！",
+	3162112:"该词条不存在，请重试",
+	3145732:"您已退出登录状态或没有相应权限",
+
+	//视频模块名编辑
+
+	3174403:"您输入的名称包含不适宜文字，请重试",
+	3174402:"仅限使用汉字、字母、数字和下划线",
+	3174401:"名称长度不得超过8个汉字，请重试",
+	3174400:"视频模块名称不得为空，请重试",
+
+	//视频编辑部分
+
+	3174412:"视频名称不得为空，请重试",
+	3174413:"视频名称不得超过15个汉字，请重试",
+	3174414:"您输入的内容包含不适宜文字，请重试",
+	3174415:"视频简介不得超过100个汉字，请重试",
+	3174416:"您输入的内容包含不适宜文字，请重试",
+	3174417:"对不起，本吧视频空间不足，请重试",
+	3174418:"您输入的视频分类超过5个，请重试",
+	3174419:"您输入的单个分类长度超过10个汉字，请重试",
+	3174420:"专辑内视频个数达到上线",
+	3174421:"您输入的内容包含不适宜文字，请重试",
+
+	//视频专辑部分
+
+	3174424:"仅限使用汉字、字母、数字和下划线",
+	3174425:"仅限使用汉字、字母、数字和下划线",
+	3174404:"专辑名称不得为空，请重试",
+	3174406:"您输入的内容含有不适宜文字，请重试",
+	3174405:"专辑名称不得超过15个汉字，请重试",
+	3174410:"专辑不得与已有专辑重名，请重试",
+	3174407:"专辑简介不得超过100个汉字，请重试",
+	3174408:"您输入的内容含有不适宜文字",
+	3174411:"本吧专辑数已达上线，无法创建新专辑",
+
+	////hi群推广
+	//模块名称
+	3162370: "您输入的内容含有不适宜文字，请重试",
+	3162368: "长度不能超过7个汉字，请重试",
+	3162369: "仅限使用汉字、字母、数字和下划线",
+	//hi群描述
+	3162373: "长度不能超过8个汉字，请重试",
+	3162374: "描述不能为空",
+	3162375: "仅限使用汉字、字母、数字和下划线",
+	//hi群列表页
+	3162376: "置顶不能超过三个",
+	3162378: "本吧官方hi群列表已经达到上限",
+	3162371: "您输入的Hi群号码不正确",
+	3162372: "您输入的hi群号码不存在 或 创建不满一天",
+	//视频系统提供的错误提示
+
+	bigSize:"视频最大不得超过200M，请重试",
+	smallSize:"视频最小不得小于50k，请重试",
+	sizeError:"文件大小错误",
+	unknowError:"未知错误",
+	errorPower:"上传失败，您没有上传权限",
+	errorId:"非法的ID串",
+	IdNotExist:"您所指定的视频文件不存在，请重试",
+	errorDomain:"上传失败，您没有上传权限",
+	transFail:"视频转换失败",
+	errorFileName:"上传失败，请稍候再试",
+	videoDeleted:"视频被删除",
+	transforming:"视频正在转换中",
+	verify:"正在审核中",
+	errorExt:"对不起，暂不支持您所上传的视频格式，请重试",
+	pageError:"您的访问出错了！"
+};
+
+
+var Url = {
+	albumS: "/{0}/tupian/cm",										//图片提交操作
+	albumNSP: "ct={0}&kw={1}&tn={2}&c={3}",							//图片库名称修改的post 参数
+	linksG: "/{0}/define/links",									//获取所有自定义链接 数据
+	defineS: "/{0}/define/cm",										//自定义链接提交操作
+	videoS: "/{0}/shipin/cm",										//视频的提交操作
+	hallS: "/{0}/star/cm",
+	videoNSP: "ct={0}&kw={1}&sn={2}&c={3}",							//视频 模块名称修改
+	videoEditP: "ct={0}&kw={1}&vid={2}&vn={3}&vd={4}&vt={5}&ovt={6}&c={7}", //视频编辑的pars链接
+	videoDelP: "ct={0}&kw={1}&vid={2}&vn={3}&c={4}",				//视频删除的 pars链接
+	videoMoveP: "ct={0}&kw={1}&zn={2}&vid={3}&ozn={4}&vn={5}&c={6}",		//视频移动到其他相册的pars
+	vAlbEditP: "ct={0}&kw={1}&zn={2}&zs={3}&ozn={4}&c={5}",			//视频相册的编辑 pars							
+	vAlbDelP: "ct={0}&kw={1}&zn={2}&c={3}",							//视频相册的删除的pars
+	vAlbAddP: "ct={0}&kw={1}&zn={2}&zs={3}&c={4}",					//视频相册的添加pars
+	archiveNSP: "ct={0}&kw={1}&arn={2}&c={3}",						//档案 模块名称修改的 post 参数
+	linksNSP: "ct={0}&kw={1}&arn={2}&c={3}",						//自定义链接 模块名称修改的post 参数
+	baikeSP: "ct={0}&kw={1}&bk={2}&c={3}",							//档案 词条修改的 post 参数
+	linksAddSP:"ct={0}&kw={1}&ln={2}&la={3}&c={4}",					//自定义链接 添加的 post参数
+	linksDel: "ct={0}&kw={1}&lid={2}&c={3}",						//删除自定义链接 post参数
+	linksEdit: "ct={0}&kw={1}&lid={2}&ln={3}&la={4}&c={5}",			//编辑自定义链接
+	picUrl: "https://web.archive.org/web/20080907060205/http://imgsrc.baidu.com/forum/abpic/item/{0}.jpg",	//图片浏览url地址
+	picSUrl: "/{0}/tupian/item/{1}.html",							//图片查看页的链接地址
+	albumCreate: "ct={0}&kw={1}&an={2}&as={3}&c={4}",				//相册创建时 post参数
+	albumG: "/{0}/tupian/modalbum/{1}",								//获取单个相册的数据
+	albumGAll: "/{0}/tupian/all",									//获取所有相册的数据
+	albumEdit: "ct={0}&kw={1}&an={2}&as={3}&oan={4}&c={5}",			//进行相册编辑操作的url
+	albumList: "/{0}/tupian/list/{1}",								//相册查看页的url地址
+	albumDel: "ct={0}&kw={1}&an={2}&oan={3}&c={4}",					//相册删除的url
+	albumSet: "ct={0}&kw={1}&an={2}&c={3}",							//设置首页相册的 post参数
+	albumUpload: "/{0}/tupian/upload/{1}",							//登录图片上传的 url地址
+	picDel: "ct={0}&kw={1}&pid={2}&c={3}&an={4}",
+	picEdit: "ct={0}&kw={1}&an={2}&pd={3}&pid={4}&c={5}",			//图片的编辑
+	picSet: "ct={0}&kw={1}&an={2}&pid={3}&c={4}",					//设置图片为相册封面
+	calendarU : "/{0}/rili/cm",
+	calendarEditTypeP : "ct=203&calType={0}&kw={1}&c={2}",
+	calendarModifyNameP : "ct=200&cn={0}&kw={1}&c={2}",
+	hiS: "/{0}/hi/cm",										//hi群 提交操作url
+	hiNSP: "ct={0}&kw={1}&name={2}&c={3}",							//hi群 模块名称修改的 post 参数
+	hiDesSP: "ct={0}&kw={1}&hino={2}&hides={3}&c={4}",
+	hiTopSP: "ct={0}&kw={1}&hino={2}&c={3}",
+	hiDelSP: "ct={0}&kw={1}&hino={2}&c={3}",
+	hiAddSP: "ct={0}&kw={1}&hino={2}&hides={3}&c={4}"
+};
+
+
+var Names = {
+	albumNumUpper: 100,
+	albumMaxWidth: 150,
+	albumMaxHeight:150,
+
+	xzFL: "选择分类",
+	ycFL: "隐藏分类",
+	djxzFL: "点击选择分类",
+	yyFL: "已有分类",
+	dh: "，",
+	tagSplit: "，|,|；|;|、",
+	edit: "编辑",
+	del: "删除",
+	zlSP: "最热视频",
+	gd: "更多",
+	vLongTime: "片长{0}&nbsp;播放{1}次<br>上传时间：{2}",
+	nullTagStr: "<p>您目前没有分类，欢迎填写。<br/>什么是<a href='https://web.archive.org/web/20080907060205/http://www.baidu.com/search/cang_faq.html#n1' target='_blank'>分类？</a></p>"
+
+};
+
+
+var zy_UI = {};
+
+zy_UI.toRegPages = {
+	Frs: ["archive_edit_id","archive_edit2_id","albumFrs_edit_id","links_edit_id","links_edit2_id","videoFrs_edit_id","friend_edit_id","jingpin_edit_id","hall_edit_id","friend_edit_id2","jingpin_edit_id2","hi_edit_id","calendarFrs_edit_id"],
+	PicUpload: ["album_add_id","album_upload_confirm","form0","form1","form2","form3","form4","upload_albumList"],
+	AlbumList: ["album_create_id","album_set_id"],
+	vUpload: ["vAlbum_create_id","expand_id","upload_id"]
+};
+
+
+zy_UI.register = function(index){
+	var i=0, elements = zy_UI.toRegPages[index];
+	switch(index){
+		case "Frs":
+			if(G(elements[0]))G(elements[0]).onclick = function(){zy_UI.ctrl(elements[0]);return false;};
+
+			if(G(elements[1]))G(elements[1]).onclick = function(){zy_UI.ctrl(elements[0]);return false;};
+
+			if(G(elements[2]))G(elements[2]).onclick = function(){zy_UI.ctrl(elements[2]);return false;};
+
+			if(G(elements[3]))G(elements[3]).onclick = function(){zy_UI.ctrl(elements[3]);return false;};
+
+			if(G(elements[4]))G(elements[4]).onclick = function(){zy_UI.ctrl(elements[3]);return false;};
+
+			if(G(elements[5]))G(elements[5]).onclick = function(){zy_UI.ctrl(elements[5]);return false;};
+
+			if(G(elements[6]))G(elements[6]).onclick = function(){zy_UI.ctrl(elements[6]);return false;};
+
+			if(G(elements[7]))G(elements[7]).onclick = function(){zy_UI.ctrl(elements[7]);return false;};
+
+			if(G(elements[8]))G(elements[8]).onclick = function(){zy_UI.ctrl(elements[8]);return false;};
+
+			if(G(elements[9]))G(elements[9]).onclick = function(){zy_UI.ctrl(elements[9]);return false;};
+
+			if(G(elements[10]))G(elements[10]).onclick = function(){zy_UI.ctrl(elements[10]);return false;};
+			
+			if(G(elements[11]))G(elements[11]).onclick = function(){zy_UI.ctrl(elements[11]);return false;};
+			
+			if(G(elements[12]))G(elements[12]).onclick = function(){zy_UI.ctrl(elements[12]);return false;};
+			
+			break;
+
+		case "PicUpload":
+			G(elements[0]).onclick = function(){zy_UI.ctrl(elements[0]);return false;};
+
+			G(elements[1]).onclick = function(){zy_UI.ctrl(elements[1]);return false;};
+
+			G(document[elements[2]]["photo"]).onchange = function(){PicUpload.showDes(elements[2]);};
+
+			G(document[elements[3]]["photo"]).onchange = function(){PicUpload.showDes(elements[3]);};
+
+			G(document[elements[4]]["photo"]).onchange = function(){PicUpload.showDes(elements[4]);};
+
+			G(document[elements[5]]["photo"]).onchange = function(){PicUpload.showDes(elements[5]);};
+
+			G(document[elements[6]]["photo"]).onchange = function(){PicUpload.showDes(elements[6]);};
+
+			break;
+
+		case "AlbumList":
+			if(G(elements[0])) G(elements[0]).onclick = function(){zy_UI.ctrl(elements[0]);return false;};
+
+			if(G(elements[1])) G(elements[1]).onclick = function(){zy_UI.ctrl(elements[1]);return false;};
+
+			break;
+
+		case "PicList":
+
+			break;
+
+		case "vUpload":
+			G(elements[0]).onclick = function(){zy_UI.ctrl(elements[0]);return false;}
+
+			G(elements[1]).onclick = function(){zy_UI.ctrl(elements[1]);return false;}
+
+			G(elements[2]).onclick = function(){zy_UI.ctrl(elements[2]);return false;}
+
+			break;
+	}
+};
+
+
+zy_UI.ctrl = function(index){
+
+	switch(index){
+       case "hi_edit_id": 
+			Frs.popupHtml("hi");
+			return false;
+			break;
+			
+       case "archive_edit_id": 
+			Frs.popupHtml("archive");
+			return false;
+			break;
+
+	   case "albumFrs_edit_id":		//frs右侧 视频编辑
+		    Frs.popupHtml("albumFrs");
+	        return false;
+			break;
+
+	   case "links_edit_id":
+		    Frs.popupHtml("links");
+			return false;
+			break;
+
+	   case "videoFrs_edit_id":
+		    Frs.popupHtml("videoFrs");
+	        return false;
+			break;
+
+	   case "friend_edit_id":
+			Frs.popupHtml("friend");
+			return false;
+			break;
+
+	   case "jingpin_edit_id":
+			Frs.popupHtml("jingpin");
+			return false;
+			break;
+
+	   case "friend_edit_id2":
+			Frs.popupHtml("friend");
+			return false;
+			break;
+
+	   case "jingpin_edit_id2":
+			Frs.popupHtml("jingpin");
+			return false;
+			break;
+
+	   case "hall_edit_id":
+			Frs.popupHtml("hall");
+			return false;
+			break;
+
+	   case "album_add_id":
+			if(parseInt(G("albumNum").value) >= Names.albumNumUpper)
+				Common.tip("album_add_tip",Results["3153934"],0);
+			else
+				PicUpload.chgState("album_add","show");
+			return false;
+			break;
+				
+	   case "calendarFrs_edit_id": 
+		    Frs.popupHtml("calendar");
+			return false;
+			break;
+
+	   case "album_upload_confirm":
+		    PicUpload.albumUpload();
+			break;
+
+	   case "album_create_id":
+			AlbumList.popupHtml("album_create");
+	        break;
+
+	   case "album_set_id":
+		    AlbumList.popupHtml("album_set");
+	        break;
+
+	    case "vAlbum_create_id":
+		    VideoUpload.vAlbumCreate();
+		    break;
+
+		case "expand_id":
+		    VideoUpload.expand();
+	        break;
+
+	   case "upload_id":
+		    VideoUpload.upload();
+	        break;
+	}
+};
+
+
+var p,forumName,albumName,crypt,intervalPop;
+
+var Common = {
+
+	getRightWH:function(Rw,Rh,Mw,Mh){
+		var index = 0,_Rw = Rw,_Rh = Rh;
+		if(Rw > Mw) index += 1;
+		if(Rh > Mh) index += 2;
+		switch(index){
+			case 1:
+				_Rw = Mw; _Rw = Rh*Mw/Rw;
+
+			case 2:
+				_Rh = Mh; _Rw = Rw*Mh/Rh;
+
+			case 3:
+				_Rh = (Rh/Mh > Rw/Mw) ? Mh : Rh*Mw/Rw;
+				_Rw = (Rh/Mh > Rw/Mw) ? Rw*Mh/Rh : Mw;
+		}
+		return [_Rw,_Rh];
+	},
+
+	initPic:function(o,Mw,Mh){
+		setTimeout(function () {Common.resizePic(o,Mw,Mh)},10);
+	},
+	
+	initPicCallBack: function (o,fn,Mw,Mh) {
+		setTimeout(function () {Common.resizePic(o,fn,Mw,Mh)},10);
+	},
+
+	resizePic:function (o,callBack,Mw,Mh) {
+		if (typeof callBack != 'function') {
+			var _Mw = callBack || Names.albumMaxWidth;
+			var _Mh = Mw || Names.albumMaxHeight;			
+		} else {
+			var _Mw = Mw || Names.albumMaxWidth;
+			var _Mh = Mh || Names.albumMaxHeight;
+		}
+		var _image=new Image(); _image.src= o.src;
+		if (_image.width == 0) {
+			var me = this;
+			var arg = arguments;
+			setTimeout( function () {
+				arg.callee.apply(me, arg)
+			}, 10)	
+		}
+	    var wh = Common.getRightWH(_image.width,_image.height,_Mw,_Mh);
+	    o.style.width = wh[0] + 'px';o.style.height = wh[1] + 'px';
+		o.style.visibility = 'visible';
+		if (typeof callBack == 'function') {
+			callBack(o);
+		}
+	},
+
+	resize:function(){
+	    var obj = document.getElementById('container') || false;   
+	    var d = document, dd = document.documentElement;
+		if (d.compatMode && d.compatMode != "BackCompat") {
+				var SH = dd.scrollHeight;
+		} else {
+				var SH = d.body.scrollHeight;
+		}
+
+	    if(obj){
+			var _height = SH ;
+			_height = (parseInt(_height) > 400 )? _height:420;
+			obj.style.height = _height + 'px';
+	    }
+	},
+
+	statistic: function(i, arg){
+		var today = new Date(), t = today.getTime();
+		
+		function getParams(params) {
+			var par = [];
+			for (var i in params) {
+				par.push(encodeURIComponent(i) + '=' + encodeURIComponent(params[i]));		
+			}
+			
+			return par.join('&');
+		}	
+			
+		if(document.images) {
+			if (arg) {
+				(new Image()).src = "/static/tb/img/c.jpg?ct="+i+"&t="+t +"&" + getParams(arg);
+			} else {
+				(new Image()).src = "/static/tb/img/c.jpg?ct="+i+"&t="+t;
+			}
+		}
+	},
+
+	clearCt:function(){
+		var len = arguments.length;
+		for(var i=0;i<len;i++){
+			if(navigator.userAgent.indexOf("MSIE")>0)
+			{
+				G(arguments[i]).focus();  
+				document.execCommand("selectall");  
+				document.execCommand("Delete");
+			}else
+				G(arguments[i]).value = "";
+		}
+	},
+
+	tip:function(obj,ct,type){	
+		Element.show(obj);
+		if(type == 1)
+			G(obj).innerHTML = "<font color='black'>{0}</font>".format(ct);
+		else if(type == 0)
+			G(obj).innerHTML = "<font color='red'>{0}</font>".format(ct);
+	},
+
+	setRefresh:function(obj,bool){
+		if(obj) obj.setContent("isReloadOnClose",bool);
+	},
+
+	closePopup:function(obj){
+		if(obj) setTimeout(function(){obj.reset();},500);
+	},
+
+	p_close:function(obj){
+	   if(G(obj)){
+		   var _autoTime = G(obj), time = parseInt(_autoTime.innerHTML);
+		   if(time > 1)
+			   _autoTime.innerHTML = time-1;
+		   else{
+			   window.clearInterval(intervalPop);
+			   if(p) p.close();
+			   location.href="/"+forumNameUrl+"/shipin/all";
+		   }
+	   }else
+		   window.clearInterval(intervalPop);
+	},
+
+	validate:function(url,type,_method,_pars,_tip,callback){
+		new Ajax.Request(
+		  url,
+		  {
+			method: _method || "get",
+			parameters: _pars || "",
+			onComplete: function(xmlHttp){
+				var JData = "("+xmlHttp.responseText+")";
+				var rst = eval(JData);
+				var no = rst.resultNo;
+				var tipInfo = Results[no] || "未知错误，请检查网络！";
+				//no = "0";//假设编辑成功
+
+				switch(type){
+					case "name_edit":	
+						if(no == "0"){
+							if(_pars.match(/ct=151(?=&)/)){
+								Common.setRefresh(p,true);	
+								Common.closePopup(p);
+							}else{
+								G(type).setAttribute("oldValue",G(type).value);
+								Frs.chgState("name_modify","hide");
+								//进行正确编辑之后，才将popup设置成刷新状态
+								Common.setRefresh(p,true);	
+							}
+						}else{
+							Common.tip("name_edit_tip",tipInfo,0);	
+						}
+						break;
+
+					case "baike_edit":		//档案 词条的修改 完成
+						if(no == "0"){
+							Common.tip("baike_edit_tip",tipInfo,1);
+							//进行正确编辑之后，才将popup设置成刷新状态
+							Common.setRefresh(p,true);	
+							Common.closePopup(p);
+						}
+						else
+							Common.tip("baike_edit_tip",tipInfo,0);
+						break;
+					case "calendar_edit":		//档案 词条的修改 完成
+						if(no == "0"){
+							Common.tip("calendar_edit_tip",tipInfo,1);
+							//进行正确编辑之后，才将popup设置成刷新状态
+							Common.setRefresh(p,true);	
+							Common.closePopup(p);
+						}
+						else
+							Common.tip("calendar_edit_tip",tipInfo,0);
+						break;
+
+					case "addLinks":		//添加自定义链接 完成
+						if(no == "0"){
+							Common.clearCt("links_addName","links_addUrl");
+							//进行正确编辑之后，才将popup设置成刷新状态
+							Common.setRefresh(p,true);	
+							setTimeout(function(){Common.initPopUp("links");},500);
+						}else{
+							if(no.match(/^3162114|3162121$/))
+								Common.tip("links_addName_tip",tipInfo,0);
+							else
+								Common.tip("links_addUrl_tip",tipInfo,0);
+						}
+						break;	
+
+					case "delLink":			//删除一个自定义链接 完成
+						//进行正确编辑之后，才将popup设置成刷新状态
+						Common.setRefresh(p,true);	
+						setTimeout(function(){Common.initPopUp("links");},500);
+						break;
+
+					case "editLink":
+						if(no == "0"){
+							//进行正确编辑之后，才将popup设置成刷新状态
+							Common.setRefresh(p,true);	
+							setTimeout(function(){Common.initPopUp("links");},500);
+						}else{
+							Common.tip(_tip,tipInfo,0);
+						}
+						break;
+
+					case "album_edit":		//相册编辑  完成
+						if(no == "0"){
+							Common.tip("album_edit_success",Results["1"],1);
+							if (document.URL.match(/([0-9]{4}|baidu\.com|tieba|post)\/[^\/]+\/tupian\/list/)) {
+								setTimeout(function () {
+									location.href = "/" + forumNameUrl + "/tupian/list/" + encodeURIComponent(G('album_name_edit').value.Alltrim().rOneBk());;
+								},500)
+							} else {
+								Common.closePopup(p);
+							}	
+						}else{
+							if(no.match(/^3153924|3153933|3153927|3153926$/))
+								Common.tip("album_name_edit_tip",tipInfo,0);
+							else
+								Common.tip("album_des_edit_tip",tipInfo,0);
+						}
+						break;
+
+					case "album_delete1":	//相册移除  完成
+						if(no == "0"){
+							Common.tip("album_delete_tip",Results["2"],1);
+							if (callback) {
+									eval(callback+'()');
+							} else {
+									Common.setRefresh(p,true);
+									Common.closePopup(p);								
+							}
+						}else{
+							Common.tip("allAlbums_tip",tipInfo,0);
+						}
+						break;
+
+					case "album_delete2":	//相册删除  完成
+						if(no == "0"){
+							Common.tip("album_delete_tip",Results["3"],1);
+							if (callback) {
+									eval(callback+'()');
+							} else {
+									Common.setRefresh(p,true);
+									Common.closePopup(p);								
+							}
+						}else 
+							Common.tip("album_delete_tip",tipInfo,0);
+						break;
+
+					case "album_add":		//上传图片页 的相册添加  完成
+						if(no == "0"){
+							if(!G("allAlbums") && G("nullAlbums"))
+								G("nullAlbums").innerHTML = "<select id='allAlbums' style='width:120px'></select>";
+							var sl = new Sel("allAlbums");
+							sl.addSel(G("album_name").value.Alltrim());
+							sl.selOption(G("album_name").value.Alltrim(),"value");
+							PicUpload.chgState("album_add","hide");
+						}else{
+							Common.tip("album_add_tip",tipInfo,0);
+						}
+						break;	
+
+					case "album_add2":		//上传图片页 的相册添加  完成
+						if(no == "0"){
+							if(!G("allAlbums") && G("nullAlbums"))
+								G("nullAlbums").innerHTML = "<select id='allAlbums' style='width:120px'></select>";
+							var sl = new Sel("allAlbums");
+							sl.addSel(G("album_name").value.Alltrim());
+							sl.selOption(G("album_name").value.Alltrim(),"value");
+							AlbumSurvivor.chgState("album_add","hide");	
+						}else{
+							Common.tip("album_add_tip",tipInfo,0);
+						}
+						break;
+
+					case "album_create":	//相册生成  完成
+						if(no == "0"){
+							Common.tip("album_create_success",Results["5"],1);
+							Common.setRefresh(p,true);
+							Common.closePopup(p);
+						}else{
+							if(no.match(/^3153924|3153933|3153927|3153926$/))
+								Common.tip("album_create_name_tip",tipInfo,0);
+							else
+								Common.tip("album_create_des_tip",tipInfo,0);		
+						}
+						break;
+
+					case "album_set":		//相册首页设置  完成
+						if(no == "0"){
+							Common.tip("album_set_success",tipInfo,1);
+							Common.closePopup(p);
+						}else{
+							if(no.match(/^3145732$/))
+								Common.tip("album_set_success",tipInfo,0);	
+							else
+								Common.tip("allAlbums_tip",tipInfo,0);	
+						}
+						break;
+
+					case "pic_edit":
+						if(no == "0"){
+							Common.tip("pic_edit_success",tipInfo,1);
+							if (callback) {
+								eval(callback+'()');
+							} else {
+								Common.setRefresh(p,true);
+								Common.closePopup(p);
+							}
+						}else{
+							if(no.match(/^3153932$/))
+								Common.tip("allAlbums_tip",tipInfo,0);
+							else
+								Common.tip("pic_edit_des_tip",tipInfo,0);
+						}
+						break;
+
+					case "pic_delete":		//图片删除	完成
+						if(no == "0"){
+							if(p) Common.tip("pic_delete_confirm",Results["7"],1);
+						}else {
+							if(p) Common.tip("pic_delete_confirm",tipInfo,0);							
+						}
+						if (callback) {
+							eval(callback+'()');
+						} else {
+							Common.setRefresh(p,true);
+							Common.closePopup(p);
+						}
+						break;
+
+					case "pic_set":				//设为相册封面 完成
+						if(no == "0"){
+							setTimeout(function(){window.location.reload();},500);
+						}
+						break;
+
+
+					case "pic_move":			//移动图片到其它相册
+						if(no == "0"){
+							setTimeout(function(){window.location.reload();},500);
+						}else
+							Common.tip("allAlbums_tip",tipInfo,0);
+						break;	
+
+					case "albumSurvivor_delete":
+						if(no == "0"){
+							Common.closePopup(p);
+						}else
+							alert(no);
+						break;
+
+					case "album_add2":		//已恢复图片区 相册添加  完成
+						if(no == "0"){
+							var sl = new Sel("allAlbums");
+							sl.addSel(G("album_name").value);
+							sl.selOption(G("album_name").value,"value");
+							AlbumSurvivor.chgState("album_add","hide");	
+						}else
+							alert(no);
+						break;	
+
+					/*以下为视频部分*/
+
+					case "video_upload_chk":
+						if(no == "0"){
+							var _succ = function(commitreturn){
+								VideoUpload.uploadZyq(commitreturn);
+							}
+							var _fail = function(errNo){
+								Common.tip("file_tip",Results[errNo],0);
+							}
+							BaiduVideo.upload("file",g_str,_succ,_fail)					
+						}
+						else{
+							if(no.match(/3174417|3174420/))
+								Common.tip("file_tip",tipInfo,0);
+
+							else if(no.match(/3174412|3174413|3174414/))
+								Common.tip("vName_tip",tipInfo,0);
+
+							else if(no.match(/3174415|3174416/))
+								Common.tip("vDes_tip",tipInfo,0);
+
+							else if(no.match(/3174418|3174419|3174421|3174425/))
+								Common.tip("vClass_tip",tipInfo,0);
+
+							else
+								Common.tip("file_tip",tipInfo,0);
+						}
+						break;
+
+					case "video_upload":
+						if(no == "0"){
+							var vName = G('vName').value.escapeHTML();
+							var _ct = [];
+
+							_ct.push("<table style='margin:50px;line-height:25px'>");
+							_ct.push("	<tr>");
+							_ct.push("		<td width='50' valign='top'><img src='/static/tb/img/loading.gif'></td>");
+							_ct.push("		<td>视频<span style='color:blue'>" + vName + "</span>上传成功，目前正在处理中，现在已经可以在<a href='/{0}/shipin/proc'>正在处理的视频</a>中看到您上传的视频了。<br/><br/>您可以<a href='/{0}/shipin/upload'>继续上传</a>，或者去<a href='/{0}/shipin/all/'>视频列表页</a>，查看其他已经完成的视频。</td>".format(forumNameUrl));
+							_ct.push("	</tr></table>");
+
+							p = new Popup({width:550,height:230});
+							p.html(_ct.join(''),"上传视频");
+						}
+						else{
+							if(no.match(/3174417/)){
+								Common.tip("file_tip",tipInfo,0);
+							}else{
+								var _ct = "<table style='margin:40px 25px;line-height:25px' width='90%'><tr><td align='center'>视频上传失败</td></tr></table>";
+								p = new Popup({width:300,height:100});
+								p.html(_ct,"上传视频");
+							}
+						}
+
+						break;
+
+					case "videoEdit":			//视频编辑
+						if(no == "0"){
+							Common.tip("video_edit_tip","修改保存成功！",1);							if(document.URL.match(/([0-9]{4}|baidu\.com|tieba|post)\/[^\/]+\/shipin\/play/))
+								setTimeout(function(){location.reload();},1000);
+							else
+							{
+								Common.setRefresh(p,true);
+								Common.closePopup(p);
+							}
+						}else{
+							if(no.match(/3174412|3174413|3174414/g))
+								Common.tip("video_edit_name_tip",tipInfo,0);
+
+							else if(no.match(/3174415|3174416/g))
+								Common.tip("video_edit_des_tip",tipInfo,0);
+
+							else if(no.match(/3174418|3174419|3174421|3174425/))
+								Common.tip("inputbox2_tip",tipInfo,0);
+
+							else
+								Common.tip("video_edit_tip",tipInfo,0);
+						}					
+						break;
+
+					case "videoDel":			//视频删除
+						if(no == "0"){
+							Common.tip("video_del_tip","删除成功",1);
+							if(!G("vInfo")){ 
+								Common.setRefresh(p,true);
+								Common.closePopup(p);
+							}								
+							else								
+								setTimeout(function(){location.href="/{0}/shipin/all/".format(forumNameUrl);},1000);
+						}else{
+							Common.tip("video_del_tip",tipInfo,0);
+							Common.closePopup(p);
+						}
+						break;
+
+					case "vAlbEdit":			//视频专辑的编辑
+						if(no == "0"){
+							Common.tip("vAlbum_edit_tip","修改保存成功！",1);
+							if (document.URL.match(/([0-9]{4}|baidu\.com|tieba|post)\/[^\/]+\/shipin\/plays/)) {
+								setTimeout(function () {
+									location.href = "/" + forumNameUrl + "/shipin/plays/" + encodeURIComponent(G('vAlbum_edit_name').value.Alltrim().rOneBk());
+								},500)
+							}else if(document.URL.match(/([0-9]{4}|baidu\.com|tieba|post)\/[^\/]+\/shipin\/list/)){
+									setTimeout(function () {
+									location.href = "/" + forumNameUrl + "/shipin/list/" + encodeURIComponent(G('vAlbum_edit_name').value.Alltrim().rOneBk());
+								},500)					
+							} else {
+								Common.setRefresh(p,true);
+								Common.closePopup(p);
+							}
+
+						}else{
+							if(no.match(/3174404|3174405|3174406|3174410|3174424/))
+								Common.tip("vAlbum_edit_name_tip",tipInfo,0);
+							else if(no.match(/3174407|3174408/))
+								Common.tip("vAlbum_edit_des_tip",tipInfo,0);
+							else
+								Common.tip("vAlbum_edit_tip",tipInfo,0);
+						}					
+						break;
+
+					case "vAlbDel":			//视频专辑的删除
+						if(no == "0"){
+							Common.tip("vAlbum_del_tip","删除成功",1);
+							if(document.URL.match(/([0-9]{4}|baidu\.com|tieba|post)\/[^\/]+\/shipin\/plays/))
+								setTimeout(function(){location.href = "/" + forumNameUrl + "/shipin/alist/";},500);
+							else{
+								if (callback) {
+									eval(callback+'()');
+								} else {
+									Common.setRefresh(p,true);
+									Common.closePopup(p);								
+								}
+							}
+						}else{
+							Common.tip("vAlbum_del_tip",tipInfo,0);
+						}						
+						break;
+
+					case "videoMove":
+						if(no == "0"){
+							Common.tip("videoMove_tip","移动成功",1);
+							Common.setRefresh(p,true);
+							Common.closePopup(p);
+						}else{
+							Common.tip("videoMove_tip",tipInfo,0);
+						}				
+						break;						
+
+					case "vAlbAdd":			//视频专辑的创建
+						if(no == "0"){	
+							if(_tip == "uploadPage"){
+								var _aName = G("album_name").value.Alltrim().rOneBk();
+								var sl = new Sel("vAlbum");
+								sl.addSel(_aName);
+								sl.selOption(_aName,"value");
+								Video.chgState("hide");
+							}
+							else
+								location.href = "/{0}/shipin/album/{1}/".format(forumNameUrl,encodeURIComponent(G("album_add_name").value.Alltrim().rOneBk()));
+
+						}else{
+							if(_tip == "uploadPage"){								
+								if(no.match(/3174411/)) Video.chgState("hide");
+								Common.tip("vAlbum_tip",tipInfo,0);
+							}else{
+								if(no.match(/3174404|3174405|3174406|3174410|3174411|3174424/))
+									Common.tip("album_add_name_tip",tipInfo,0);
+								else
+									Common.tip("album_add_des_tip",tipInfo,0);
+							}
+
+						}
+						break;
+				}
+			},
+
+			onFailure:function(xmlHttp){
+				alert("出现异常错误！");
+			}
+		  });
+	},
+
+
+	/*
+
+
+		初始化弹出层中的内容。
+
+
+		type - 指定的类型
+
+
+	*/
+
+
+	initPopUp:function(type,i){
+		if(type.match(/^links$/)){
+			var url = Url.linksG.format(forumName);
+			new Ajax.Request(
+			  url,
+			  {
+				method: 'get',
+				onComplete:function(xmlHttp){
+					var JData = "("+xmlHttp.responseText+")";
+					var rst = eval(JData).linksUrl;
+					var linksList = G("linksList");
+					var str = "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='tb3'><tr class='tr1'><td width='35%'>链接名称</td><td>链接地址</td><td width='50'>编辑</td><td width='40'>删除</td></tr>";				
+					for(var i=0,len = rst.length;i<len;i++){
+						var link = rst[i];
+						str += "<tr class='tr2'><td><span>{0}</span><input type='hidden' value='{1}'/><br><span id='linkEdit_tip'></span></td><td><span>{2}</span><input type='hidden' value='{3}' /></td><td><a href='' onclick='Frs.chgState(\"{4}\",\"linkEdit\",\"{5}\");return false;'><img src='/static/tb/img/edit.gif' width='15' height='16' border='0'></a></td><td><a href='' onclick='Frs.delLink(\"{5}\");return false;'><img src='/static/tb/img/del.gif' width='15' height='16' border='0'></a></td></tr><tr class='tr3'><td colspan='4'></td></tr>".format(link.linkNameS.escapeHTML(),link.linkName.escapeJS(),link.linkUrlS.escapeHTML(),link.linkUrl.escapeJS(),i,link.linkId);
+					}
+					str += "<tr class='tr2'><td colspan='4'>&nbsp;</td></tr></table>";
+					linksList.innerHTML = str;
+				 },
+				 onFailure:function(xmlHttp){
+					alert("出现异常错误！");
+				 }
+			  });
+		}else if(type.match(/^videoEdit$/)){
+			var url = "/{0}/shipin/modvideo/{1}/".format(forumName_u,i);
+			new Ajax.Request(
+			  url,
+			  {
+				method: 'get',
+				onComplete:function(xmlHttp){
+					var JData = "("+xmlHttp.responseText+")";
+					var _vObj = eval(JData).videoData;
+					G("video_edit_name").value = _vObj.vName;
+					G("video_edit_des").value = _vObj.vDesc;
+					G("inputbox2").value = Video.oldVClass = _vObj.vTags;
+					Common.regSug("inputbox2","sug2");
+				},
+				onFailure:function(xmlHttp){
+					alert("出现异常错误！");
+				}
+			});
+		}else if(type.match(/^vAlbEdit$/)){
+			var url = "/{0}/shipin/modalbum/{1}/".format(forumName_u,encode(albums[i].albumName));
+			new Ajax.Request(
+			  url,
+			  {
+				method: 'get',
+				onComplete:function(xmlHttp){
+					var JData = "("+xmlHttp.responseText+")";
+					var _vObj = eval(JData);
+					G("vAlbum_edit_name").value = _vObj.aName;
+					G("vAlbum_edit_des").value = _vObj.aDesc;
+				},
+
+				onFailure:function(xmlHttp){
+					alert("出现异常错误！");
+				}
+			});
+
+		}else if(type.match(/^moveAlbums$/)){
+			var url = "/{0}/shipin/getallalbums".format(forumName_u);
+			new Ajax.Request(
+			  url,
+			  {
+				method: 'get',
+				onComplete:function(xmlHttp){
+					var JData = "("+xmlHttp.responseText+")";
+					var _vObj = eval(JData);
+					var _allAlbums = _vObj.allAlbumName;
+					if(_allAlbums.length >0){
+						var sel = new Sel("vAlbum",_allAlbums);
+						sel.addSels();
+						if(oldVAlbum.Alltrim() != "")
+							sel.selOption(oldVAlbum,"value");
+					}
+				}
+			  });
+		}else if(type.match(/^albumFrs$/)){
+			Common.initAllAlbum("allAlbums",null,"album_set");
+		}
+	},
+
+	regSug:function(inputbox,sug){
+		var url = "/{0}/shipin/getalltags/".format(forumName_u);
+		new Ajax.Request(
+		  url,
+		  {
+			method: 'get',
+			onComplete:function(xmlHttp){
+				var JData = "("+xmlHttp.responseText+")";
+				var _data = eval(JData).allTags;
+				new Suggest(inputbox,sug,{data:_data,type:0,if2D:false,ifMulti:true,sg_h:5,sg_num:10});
+			},
+
+			onFailure:function(xmlHttp){
+				alert("出现异常错误！");
+			}
+		});	
+	},
+
+	initAllAlbum:function(id,dAlbum,type){
+		var url = Url.albumGAll.format(encode(forumName));
+		new Ajax.Request(
+		  url,
+		  {
+			method: 'get',
+			onComplete:function(xmlHttp){				
+				var jData = "("+xmlHttp.responseText+")";
+				var sel;
+				var rst = eval(jData);
+				var alls = rst.albums;				
+				if(alls.length > 0){
+					if(type == "remove")
+						alls.remove(dAlbum);				
+					if(alls.length > 0){
+						sel = new Sel(id,alls);
+						sel.addSels();
+						if(alls.length == 1 && G(id).options[0].value == "") G(id).options[0] = null;
+					}else{
+						var _obj = document.getElementsByName("album_delete_radio");
+						_obj[1].checked = true;_obj[0].disabled = true;
+						G("allAlbums").disabled = true;
+					}
+				} else {
+					G('allAlbums_ct').innerHTML = "<span id='nullAlbums'>"+Results["6"]+"</span>";
+				}
+
+				if(type && type.match(/^album_set$/)){
+					var _radio = document.getElementsByName("album_set_radio");
+					if(rst.defaultAlbumName == ""){
+						_radio[0].checked = true;
+					}
+					else{
+						_radio[1].checked = true;
+						type = "value";
+					}
+				}
+				sel.selOption(dAlbum || rst.defaultAlbumName,type?type:"value");
+			}
+		  });	
+	}
+};
+
+}
+/*
+     FILE ARCHIVED ON 06:02:05 Sep 07, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:29:28 May 05, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 67.727
+  exclusion.robots: 0.063
+  exclusion.robots.policy: 0.054
+  cdx.remote: 0.053
+  esindex: 0.009
+  LoadShardBlock: 45.563 (3)
+  PetaboxLoader3.datanode: 73.856 (4)
+  load_resource: 606.557
+  PetaboxLoader3.resolve: 523.719
+*/

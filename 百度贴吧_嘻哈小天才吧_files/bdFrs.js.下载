@@ -1,0 +1,238 @@
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+var Frs = {
+	currentObj: 1,
+	/*
+		对模块名称 和 词条 的修改进行了统一封装
+		type:
+			"name_edit" - 表示对模块名称进行修改。
+			"baike_edit" - 表示对档案模块中的词条进行修改。
+	*/
+	getRowCell:function(obj,i,j,k){
+		return k?obj.rows[i].cells[j].childNodes[k]:(j?obj.rows[i].cells[j]:(i?obj.rows[i]:obj));
+	},
+	modify:function(type){
+		var bool = 0, value = encode(G(type).value.Alltrim()),pars,url = Url.defineS.format(forumName_u);
+		
+		var chkOptions = {isContain:true,byteLength:16};
+		var form = new Form();
+		if(type.match(/^baike_edit$/)){
+			chkOptions = {};
+			pars = Url.baikeSP.format(102,forumName_u,value,crypt);			
+		}else if(type.match(/^calendar_edit$/)){
+			chkOptions = {};
+			value  = document.getElementsByName("calendar_edit");
+			url = Url.calendarU.format(forumName_u);
+			pars = Url.calendarEditTypeP.format(((value[0].checked)? 0:1),forumName_u,crypt);
+		}else{
+			switch(Frs.currentObj){
+				case 1:
+					url = Url.hallS.format(forumName_u);
+					pars = Url.videoNSP.format(1,forumName_u,value,crypt);
+					break;
+				case 50:			//相册设置
+					url = Url.albumS.format(forumName_u);
+					pars = Url.albumNSP.format(50,forumName_u,value,crypt);
+					break;
+				case 101:			//档案设置
+					pars = Url.archiveNSP.format(101,forumName_u,value,crypt);
+					break;
+				case 111:			//hi群模块名称设置
+					url = Url.hiS.format(forumName_u);
+					form.setErrors({
+						byteLength: Results["3162368"],
+						isNull: "输入不能为空",
+						isContain: Results["3162369"]
+					});
+					chkOptions = {isContain:true,byteLength:14,isNull:true};
+					pars = Url.hiNSP.format(111,forumName_u,value,crypt);
+					break;
+				case 103:			//自定义链接设置
+					pars = Url.linksNSP.format(103,forumName_u,value,crypt);
+					break;
+				case 151:			//视频设置
+					url = Url.videoS.format(forumName_u);
+					pars = Url.videoNSP.format(151,forumName_u,value,crypt);
+					break;
+				case 200:
+					url = Url.calendarU.format(forumName_u);
+					pars = Url.calendarModifyNameP.format(value,forumName_u,crypt);
+			}
+		}	
+		if(value !=null && value != ""){
+			bool = new Form().checkSubmit(null,[[type,type+"_tip"]],chkOptions);
+			if(bool == 0){
+				Common.validate(url,type,"post",pars,"");
+			}
+		}else
+			G(type).focus();
+	},
+	/*
+		在自定义链接浮动层，进行添加自定义链接的操作
+	*/
+	addLink:function(){
+		var _value = G("links_addName").value.Alltrim();
+		var _url = G("links_addUrl").value.Alltrim();
+		if(_value != "" && _url != ""){
+			var index = new Form().checkSubmit(null,[["links_addName","links_addName_tip"],["links_addUrl","links_addUrl_tip"]]);
+			if(index == 0){		
+				var url = Url.defineS.format(forumName_u);
+				var pars = Url.linksAddSP.format(104,forumName_u,encode(_value),encode(_url),crypt);
+				Common.validate(url,"addLinks","post",pars);
+			}
+		}
+	},
+	delLink:function(id){
+		var pars = Url.linksDel.format(106,forumName_u,id,crypt);
+		Common.validate(Url.defineS.format(forumName_u),"delLink","post",pars);
+	},
+	editLink:function(index,id){
+		var rowObj = Frs.getRowCell(G("tb3"),index);
+		var name = rowObj.cells[0].childNodes[0].firstChild;
+		var linkUrl = rowObj.cells[1].childNodes[0].firstChild;		
+		if(name.value.Alltrim() != "" && linkUrl.value.Alltrim()){
+			var tip = Frs.getRowCell(G("tb3"),index+1,0).firstChild;
+			var pars = Url.linksEdit.format(105,forumName_u,id,encode(name.value),encode(linkUrl.value),crypt);
+			var index = new Form().checkSubmit(null,[[name,tip],[linkUrl,tip]]);
+			if(index == 0)
+				Common.validate(Url.defineS.format(forumName_u),"editLink","post",pars,tip);
+		}
+	},
+	/*
+		切换模块名称的显示和编辑两个状态。
+		type：
+			”hide“ - 表示 展示 ”显示“状态
+			”show“ - 表示 展示 ”修改“状态
+	*/
+	chgState:function(obj,type,id){
+		var name;
+		if(type.match(/^hide$/)){
+			name = G("name_edit").getAttribute("oldValue");
+			G(obj).innerHTML = "<span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"{1}\",\"show\");return false;'>编辑</a><br><br>".format(name,obj);
+		}else if(type.match(/^show$/)){
+			name = G("name_show").innerHTML;
+			G(obj).innerHTML = "<input id='name_edit' type='text' value='{0}' oldValue='{1}'/>&nbsp;<input type='submit' value='确定'/>&nbsp;<a href='' onclick='Frs.chgState(\"{2}\",\"hide\");return false;'>取消</a><br><span style='margin-left:64px' id='name_edit_tip'>{3}</span>".format(name,name,obj,Results["3153922"]);
+		}else{
+			var linkUrl,index = parseInt(obj)*2+1,rc = G("tb3").rows[index];
+			var rc00 = rc.cells[0].childNodes[0];	//保存截短的 自定义链接 名称
+			var rc01 = rc.cells[0].childNodes[1];	//保存完整的 自定义链接 名称
+			var rc10 = rc.cells[1].childNodes[0];	//保存截短的 自定义Url 链接
+			var rc11 = rc.cells[1].childNodes[1];	//保存完整的 自定义Url 链接
+			var rc2 = rc.cells[2],rc3 = rc.cells[3];
+			if(type.match(/^linkEdit$/)){
+				//获取自定义链接名称和链接地址	
+				rc.style.backgroundColor = "#fefed2";rc.style.height = "30px";
+				name = rc01.value.escapeJS();linkUrl = rc11.value.escapeJS();
+				rc00.innerHTML = "<input type='text' value='{0}' size='28' require='isNull:true|byteLength:62' errors='byteLength:{1}'/>".format(name,Results["3162114"]);
+				rc10.innerHTML = "<input type='text' value='{0}' size='40' require='isNull:true|byteLength:2048' errors='byteLength:{1}'/>".format(linkUrl,Results["3162116"]);
+				rc2.innerHTML = "<input type='button' value='确定' onclick='Frs.editLink({0},\"{1}\");'/>".format(index,id);
+				rc3.innerHTML = "<a href='' onclick='Frs.chgState({0},\"linkEditCal\",\"{1}\");return false;'>取消</a>".format(obj,id);
+			}else if(type.match(/^linkEditCal$/)){
+				Common.initPopUp("links");
+			}
+		}
+	},
+	/*
+		使用popup组件，来生成弹出层中的html内容
+	*/
+	popupHtml:function(type){
+		var ctHtml = "<div class='popupCt'>",_width = 400,_height = 80,_isReload = false,name,_isShowShadow = true;//获取当前模块名称
+		if(type != "jingpin" && type != "friend")
+			 name = G(type+"_name").innerHTML;
+		switch(type){
+			case "hi":					
+				ctHtml += "<div style='height:45px;'><form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<span id='name_modify'><span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"name_modify\",\"show\");return false;'>编辑</a><br><br></span></form></div><a href='/{1}/hi' target='about:blank' onclick='javascript:if(p) p.close();'>前往hi群列表进行管理</a>".format(name,forumName_u);
+				_width = 400;_height = 120;Frs.currentObj = 111;
+				break;
+			case "archive":
+				var baike = G(type+"_baike").value;//获取“档案”模块中的当前词条
+				ctHtml += "<div style='height:45px;'><form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<span id='name_modify'><span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"name_modify\",\"show\");return false;'>编辑</a><br><br></span></form></div>更改引用的百科词条：<br><form onsubmit='Frs.modify(\"baike_edit\");return false;'><input id='baike_edit' type='text' value='{1}'/>&nbsp;<input type='submit' value='提交'/><br><div style='height:20px;'><span style='display:none;' id='baike_edit_tip'></span></div></form>若词条中未包含您期望的内容，可<a href='https://web.archive.org/web/20080907060056/http://baike.baidu.com/searchword/{2}' target='about:blank' onclick='javascript:if(p) p.close();'>前往百度百科编辑该词条</a>".format(name,baike,G(type+"_baike_url").value);
+				_width = 400;_height = 160;Frs.currentObj = 101;
+				break;
+			case "albumFrs":					
+				ctHtml += "<div style='height:45px;'><form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<span id='name_modify'><span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"name_modify\",\"show\");return false;'>编辑</a><br><br></span></form></div><table width='100%' cellspacing='0' cellpadding='0'><tr><td colspan='2'><strong>设置本页面显示相册：</strong></td></tr><tr><td colspan='2' style='line-height:20px'><label for='album_set_radio1'><input name='album_set_radio' id='album_set_radio1' type='radio' onfocus='this.blur()' onclick='AlbumList.hideSelTip();' checked>首页随机显示相册</label></td></tr><tr><td width='120'><label for='album_set_radio2'><input name='album_set_radio' id='album_set_radio2' type='radio' onfocus='this.blur()'>首页显示指定相册</label></td><td><select id='allAlbums' style='visibility:visible' onchange='AlbumList.hideSelTip();'><option selected>请选择...</option></select></td></tr><tr><td>&nbsp;</td><td><span id='allAlbums_tip'></span></td></tr><tr><td colspan='2'><input type='button' onclick='AlbumList.albumSet();' value=' 确认 '>&nbsp;&nbsp;<span id='album_set_success'></span></td></tr></table>".format(name);
+				Frs.currentObj = 50;
+				_height = 185;
+				break;
+			case "videoFrs":
+				ctHtml += "<form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<input id='name_edit' type='text' value='{0}'/>&nbsp;<input type='submit' value='确定'>&nbsp;<a href='' onclick='p.close();return false;'>取消</a><br><span style='margin-left:64px' id='name_edit_tip'>{1}</span></form>".format(name,Results["3153922"]);
+				Frs.currentObj = 151;	//需要修改
+				break;
+			case "calendar":			
+				console.log('kkk')
+				var _type1 = globalVar.calType == "0" ? " checked" : " ";
+				var _type2 = globalVar.calType == "1" ? " checked" : " ";
+				ctHtml += "<div style='height:45px;'><form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<span id='name_modify'><span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"name_modify\",\"show\");return false;'>编辑</a><br><br></span></form></div><br><form onsubmit='Frs.modify(\"calendar_edit\");return false;'>选择在主题列表页的显示方式：<input type='radio' value='0' id='calendar_edit' name='calendar_edit'{1}/>月历 <input type='radio' value='1' name='calendar_edit'{2}/>周历&nbsp;<input type='submit' value='确认'/><br><div style='height:20px;'><span style='display:none;' id='calendar_edit_tip'></span></div></form>".format(name,_type1,_type2);
+				_width = 400;_height = 160;Frs.currentObj = 200;
+				break;
+			case "links":
+				ctHtml += "<form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<span id='name_modify'><span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"name_modify\",\"show\");return false;'>编辑</a><br><br></span></form><table style='margin-bottom:5px;margin-left:4px'><tr><td>链接名称：</td><td><input id='links_addName' type='text' size='45' require='isNull:true|byteLength:62' errors='byteLength:{1}'/><br><span id='links_addName_tip'></span></td></tr><tr><td>链接地址：</td><td><input id='links_addUrl' type='text' size='45' require='isNull:true|byteLength:2048' errors='byteLength:{2}'/><br><span id='links_addUrl_tip'></span></td></tr><tr><td></td><td><input type='button' onclick='Frs.addLink();' value='添加'/></td></tr></table><hr size='1' color='#CCCCCC' width='95%' style='zoom:1;margin-left:0px!important;margin-left:-28px;margin-top:10px'><div id='linksList' style='width:95%'></div>".format(name,Results["3162114"],Results["3162116"]);
+				_width = 600;_height = 350;
+				Frs.currentObj = 103;
+				break;
+			case "friend":
+				ctHtml += "<iframe src='/{0}/define/frsfriend/' width='360' height='250' id='ifr' frameborder='0'></iframe>".format(g_forumName_url);
+				_isReload = true;
+				_height = 270;			
+				break;
+			case "jingpin":
+				ctHtml += "<iframe src='/f?ct=318767104&tn=bdFrsGoodClassBrws&sc={0}&lm=33&word={1}' width='480' height='250' id='FrsGoodClassIframe'  frameborder='0'></iframe>".format(g_bdForumID,g_forumName_url);
+				_width = 500;
+				_isShowShadow = false;
+				break;
+			case "hall":
+				ctHtml += "<div style='height:45px;'><form onsubmit='Frs.modify(\"name_edit\");return false;'><strong>模块名称</strong>：<span id='name_modify'><span id='name_show'>{0}</span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='/static/tb/img/edit.gif' width='15' height='16'><a href='' onclick='Frs.chgState(\"name_modify\",\"show\");return false;'>编辑</a><br><br></span></form></div><br><a href='/f?ct=536870912&sc=2&lm=21&tn=bdAMContainer&word={1}&rs7={2}#11' target='about:blank' onclick='javascript:if(p) p.close();'>前往吧务管理页对名人堂成员进行管理</a>".format(name,g_forumName_url,g_bdForumID);
+	
+				_height = 120;
+				Frs.currentObj = 1;
+				break;
+		}
+		ctHtml += "</div>";
+		window.location.hash = document.body.scrollTop;
+		p = new Popup({width:_width,height:_height,isReloadOnClose:_isReload,isShowShadow:_isShowShadow});
+		p.html(ctHtml,"设置");
+		Common.initPopUp(type);
+	},
+	loadF:function(){
+		if(G("forumName")) forumName = G("forumName").value;
+		if(G("crypt")) crypt = G("crypt").value;
+		forumName_u = encode(forumName);
+		zy_UI.register("Frs");
+	}
+};
+/*
+	注册frs右侧页面的节点操作事件
+*/
+Event.observe(window,"load",Frs.loadF,false);
+
+}
+/*
+     FILE ARCHIVED ON 06:00:56 Sep 07, 2008 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:30:32 May 05, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 111.29
+  exclusion.robots: 0.07
+  exclusion.robots.policy: 0.06
+  cdx.remote: 0.056
+  esindex: 0.01
+  LoadShardBlock: 83.075 (3)
+  PetaboxLoader3.datanode: 90.548 (4)
+  load_resource: 176.35
+  PetaboxLoader3.resolve: 140.052
+*/
